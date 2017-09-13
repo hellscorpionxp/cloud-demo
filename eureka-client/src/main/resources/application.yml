@@ -1,0 +1,20 @@
+server:
+  port: 9001
+  
+security:
+  basic:
+    enabled: true
+  user:
+    name: admin
+    password: admin
+    
+eureka:
+  client:
+    service-url:
+      defaultZone: http://admin:admin@localhost:8761/eureka/
+    prefer-same-zone-eureka: true
+  instance:
+    instance-id: ${spring.cloud.client.hostname}:${spring.application.name}:${spring.application.instance_id:${server.port}}
+    metadata-map:
+      zone: zone1
+      

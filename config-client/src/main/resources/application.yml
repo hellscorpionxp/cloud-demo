@@ -1,0 +1,9 @@
+server:
+  port: 9000
+
+security:
+  basic:
+    enabled: true
+  user:
+    name: admin
+    password: admin

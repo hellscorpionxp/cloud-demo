@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: config-server
+    
+encrypt:
+  fail-on-error: false
+  key-store:
+    location: classpath:keystore.jks
+    password: 789012
+    alias: config-server
+    secret: 123456
+    

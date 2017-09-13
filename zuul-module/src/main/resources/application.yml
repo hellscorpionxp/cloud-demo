@@ -1,0 +1,44 @@
+server:
+  port: 9003
+  
+security:
+  basic:
+    enabled: true
+  user:
+    name: admin
+    password: admin
+    
+eureka:
+  client:
+    service-url:
+      defaultZone: http://admin:admin@localhost:8761/eureka/
+    prefer-same-zone-eureka: true
+  instance:
+    instance-id: ${spring.cloud.client.hostname}:${spring.application.name}:${spring.application.instance_id:${server.port}}
+    metadata-map:
+      zone: zone3
+      
+zuul:
+  host:
+    max-total-connections: 200
+    max-per-route-connections: 20
+  ribbon-isolation-strategy: semaphore
+  ignored-services: '*'
+  routes:
+    feignClient:
+      path: /r_feign/**
+      service-id: feign-client
+      strip-prefix: true
+      sensitive-headers:
+        Cookie,Set-Cookie
+    zuulFallback:
+      path: /zuulFallback/**
+      
+#ribbon:
+#  eureka:
+#    enabled: false
+    
+#feignClient:
+#  ribbon:
+#    list-of-servers: localhost
+    

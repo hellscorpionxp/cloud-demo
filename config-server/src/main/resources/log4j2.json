@@ -1,0 +1,164 @@
+{
+    "configuration": {
+        "status": "WARN",
+        "name": "ConfigServerConfig",
+        "packages": "com.example",
+        "properties": {
+            "property": [
+                {
+                    "name": "level",
+                    "value": "INFO"
+                },
+                {
+                    "name": "filename",
+                    "value": "/var/log/tomcat/config-server"
+                },
+                {
+                    "name": "rollingFilename",
+                    "value": "${filename}-%d{yyyy-MM-dd}-%i"
+                },
+                {
+                    "name": "patternLayout",
+                    "value": "%d{yy-MM-dd HH:mm:ss} %p[%t] %c.%M(%F:%L): %m%n"
+                }
+            ]
+        },
+        "appenders": {
+            "Console": {
+                "name": "CONSOLE",
+                "PatternLayout": {
+                    "pattern": "${patternLayout}"
+                }
+            },
+            "RollingRandomAccessFile": [
+                {
+                    "name": "LOGFILE",
+                    "fileName": "${filename}.log",
+                    "filePattern": "${rollingFilename}.log",
+                    "PatternLayout": {
+                        "pattern": "${patternLayout}"
+                    },
+                    "Policies": {
+                        "TimeBasedTriggeringPolicy": {
+                            "interval": "1",
+                            "modulate": "true"
+                        },
+                        "SizeBasedTriggeringPolicy": {
+                            "size": "200 MB"
+                        }
+                    },
+                    "ThresholdFilter": {
+                        "level": "ERROR",
+                        "onMatch": "DENY",
+                        "onMismatch": "ACCEPT"
+                    }
+                },
+                {
+                    "name": "LOGERRFILE",
+                    "fileName": "${filename}.err",
+                    "filePattern": "${rollingFilename}.err",
+                    "PatternLayout": {
+                        "pattern": "${patternLayout}"
+                    },
+                    "Policies": {
+                        "TimeBasedTriggeringPolicy": {
+                            "interval": "1",
+                            "modulate": "true"
+                        },
+                        "SizeBasedTriggeringPolicy": {
+                            "size": "200 MB"
+                        }
+                    },
+                    "ThresholdFilter": {
+                        "level": "ERROR",
+                        "onMatch": "ACCEPT",
+                        "onMismatch": "DENY"
+                    }
+                }
+            ]
+        },
+        "loggers": {
+            "logger": [
+                {
+                    "name": "org.springframework",
+                    "level": "WARN",
+                    "additivity": "false",
+                    "AppenderRef": [
+                        {
+                            "ref": "CONSOLE"
+                        },
+                        {
+                            "ref": "LOGFILE"
+                        },
+                        {
+                            "ref": "LOGERRFILE"
+                        }
+                    ]
+                },
+                {
+                    "name": "org.quartz",
+                    "level": "WARN",
+                    "additivity": "false",
+                    "AppenderRef": [
+                        {
+                            "ref": "CONSOLE"
+                        },
+                        {
+                            "ref": "LOGFILE"
+                        },
+                        {
+                            "ref": "LOGERRFILE"
+                        }
+                    ]
+                },
+                {
+                    "name": "net.sf.ehcache",
+                    "level": "WARN",
+                    "additivity": "false",
+                    "AppenderRef": [
+                        {
+                            "ref": "CONSOLE"
+                        },
+                        {
+                            "ref": "LOGFILE"
+                        },
+                        {
+                            "ref": "LOGERRFILE"
+                        }
+                    ]
+                },
+                {
+                    "name": "org.thymeleaf",
+                    "level": "WARN",
+                    "additivity": "false",
+                    "AppenderRef": [
+                        {
+                            "ref": "CONSOLE"
+                        },
+                        {
+                            "ref": "LOGFILE"
+                        },
+                        {
+                            "ref": "LOGERRFILE"
+                        }
+                    ]
+                }
+            ],
+            "asyncRoot": {
+                "level": "${level}",
+                "includeLocation": "true",
+                "AppenderRef": [
+                    {
+                        "ref": "CONSOLE"
+                    },
+                    {
+                        "ref": "LOGFILE"
+                    },
+                    {
+                        "ref": "LOGERRFILE"
+                    }
+                ]
+            }
+        }
+    }
+}

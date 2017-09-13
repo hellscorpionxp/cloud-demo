@@ -1,0 +1,34 @@
+server:
+  port: 8888
+  
+security:
+  basic:
+    enabled: true
+  user:
+    name: admin
+    password: admin
+    
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/hellscorpionxp/config-repo.git
+          basedir: target/config
+          clone-on-start: true
+          force-pull: true
+        health:
+          repositories:
+            foo-db:
+              name: foo
+              profiles: db
+            foo-development-db:
+              name: foo
+              profiles: development-db
+            samplebackendservice-development:
+              name: samplebackendservice
+              profiles: development
+              
+logging:
+  config: classpath:log4j2.json
+  
