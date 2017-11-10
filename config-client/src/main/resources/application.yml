@@ -1,5 +1,7 @@
 server:
   port: 9000
+  context-path: /config-client
+  display-name: ConfigClient
 
 management:
   security:
