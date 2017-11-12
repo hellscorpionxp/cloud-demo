@@ -1,9 +1,24 @@
+---
+spring:
+  profiles: config-client1
+  
+eureka:
+  instance:
+    hostname: config-client1
+    prefer-ip-address: false
+    status-page-url-path: ${management.context-path}/info
+    health-check-url-path: ${management.context-path}/health
+  client:
+    service-url:
+      defaultZone: http://eureka-server1:8761/eureka/,http://eureka-server2:8762/eureka/
+      
 server:
+  address: 0.0.0.0
   port: 9000
-  context-path: /config-client
   display-name: ConfigClient
 
 management:
+  context-path: /admin
   security:
     enabled: false
     
@@ -13,3 +28,35 @@ security:
   user:
     name: admin
     password: admin
+    
+---
+spring:
+  profiles: config-client2
+  
+eureka:
+  instance:
+    hostname: config-client2
+    prefer-ip-address: false
+    status-page-url-path: ${management.context-path}/info
+    health-check-url-path: ${management.context-path}/health
+  client:
+    service-url:
+      defaultZone: http://eureka-server1:8761/eureka/,http://eureka-server2:8762/eureka/
+      
+server:
+  address: 0.0.0.0
+  port: 9001
+  display-name: ConfigClient
+
+management:
+  context-path: /admin
+  security:
+    enabled: false
+    
+security:
+  basic:
+    enabled: true
+  user:
+    name: admin
+    password: admin
+    

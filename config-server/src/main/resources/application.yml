@@ -1,21 +1,6 @@
-server:
-  address: 0.0.0.0
-  port: 8888
-  context-path: /config-server
-  display-name: ConfigServer
-  
-management:
-  security:
-    enabled: false
-    
-security:
-  basic:
-    enabled: true
-  user:
-    name: admin
-    password: admin
-    
+---
 spring:
+  profiles: config-server1
   cloud:
     config:
       server:
@@ -36,6 +21,82 @@ spring:
               name: samplebackendservice
               profiles: development
               
-logging:
-  config: classpath:log4j2.json
+encrypt:
+  fail-on-error: false
+  key-store:
+    location: classpath:keystore.jks
+    password: 789012
+    alias: config-server
+    secret: 123456
+    
+server:
+  address: 0.0.0.0
+  port: 8888
+  display-name: ConfigServer
+  
+management:
+  context-path: /admin
+  security:
+    enabled: false
+    
+security:
+  basic:
+    enabled: true
+  user:
+    name: admin
+    password: admin
+    
+#logging:
+#  config: classpath:log4j2-spring.json
+  
+---
+spring:
+  profiles: config-server2
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/hellscorpionxp/config-repo.git
+          basedir: target/config
+          clone-on-start: true
+          force-pull: true
+        health:
+          repositories:
+            foo-db:
+              name: foo
+              profiles: db
+            foo-development-db:
+              name: foo
+              profiles: development-db
+            samplebackendservice-development:
+              name: samplebackendservice
+              profiles: development
+              
+encrypt:
+  fail-on-error: false
+  key-store:
+    location: classpath:keystore.jks
+    password: 789012
+    alias: config-server
+    secret: 123456
+    
+server:
+  address: 0.0.0.0
+  port: 8889
+  display-name: ConfigServer
+  
+management:
+  context-path: /admin
+  security:
+    enabled: false
+    
+security:
+  basic:
+    enabled: true
+  user:
+    name: admin
+    password: admin
+    
+#logging:
+#  config: classpath:log4j2-spring.json
   

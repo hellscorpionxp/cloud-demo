@@ -1,12 +1,40 @@
+---
 spring:
+  profiles: config-server1
   application:
     name: config-server
     
-encrypt:
-  fail-on-error: false
-  key-store:
-    location: classpath:keystore.jks
-    password: 789012
-    alias: config-server
-    secret: 123456
+eureka:
+  instance:
+    hostname: config-server1
+    prefer-ip-address: false
+    status-page-url-path: ${management.context-path}/info
+    health-check-url-path: ${management.context-path}/health
+    metadata-map:
+      user: admin
+      password: admin
+      config-path: /config-server
+  client:
+    service-url:
+      defaultZone: http://eureka-server1:8761/eureka/,http://eureka-server2:8762/eureka/
+      
+---
+spring:
+  profiles: config-server2
+  application:
+    name: config-server
     
+eureka:
+  instance:
+    hostname: config-server2
+    prefer-ip-address: false
+    status-page-url-path: ${management.context-path}/info
+    health-check-url-path: ${management.context-path}/health
+    metadata-map:
+      user: admin
+      password: admin
+      config-path: /config-server
+  client:
+    service-url:
+      defaultZone: http://eureka-server1:8761/eureka/,http://eureka-server2:8762/eureka/
+      
