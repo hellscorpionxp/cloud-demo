@@ -13,7 +13,6 @@ eureka:
     metadata-map:
       user: admin
       password: admin
-      config-path: /config-server
   client:
     service-url:
       defaultZone: http://eureka-server1:8761/eureka/,http://eureka-server2:8762/eureka/
@@ -33,7 +32,6 @@ eureka:
     metadata-map:
       user: admin
       password: admin
-      config-path: /config-server
   client:
     service-url:
       defaultZone: http://eureka-server1:8761/eureka/,http://eureka-server2:8762/eureka/
