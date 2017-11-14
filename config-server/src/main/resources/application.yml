@@ -21,14 +21,6 @@ spring:
               name: samplebackendservice
               profiles: development
               
-encrypt:
-  fail-on-error: false
-  key-store:
-    location: classpath:keystore.jks
-    password: 789012
-    alias: config-server
-    secret: 123456
-    
 server:
   address: 0.0.0.0
   port: 8888
@@ -72,14 +64,6 @@ spring:
               name: samplebackendservice
               profiles: development
               
-encrypt:
-  fail-on-error: false
-  key-store:
-    location: classpath:keystore.jks
-    password: 789012
-    alias: config-server
-    secret: 123456
-    
 server:
   address: 0.0.0.0
   port: 8889

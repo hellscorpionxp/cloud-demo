@@ -4,6 +4,14 @@ spring:
   application:
     name: config-server
     
+encrypt:
+  fail-on-error: false
+  key-store:
+    location: classpath:keystore.jks
+    password: 789012
+    alias: config-server
+    secret: 123456
+    
 eureka:
   instance:
     hostname: config-server1
@@ -22,6 +30,14 @@ spring:
   profiles: config-server2
   application:
     name: config-server
+    
+encrypt:
+  fail-on-error: false
+  key-store:
+    location: classpath:keystore.jks
+    password: 789012
+    alias: config-server
+    secret: 123456
     
 eureka:
   instance:
