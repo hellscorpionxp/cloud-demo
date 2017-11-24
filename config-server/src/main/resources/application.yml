@@ -6,7 +6,7 @@ spring:
       server:
         git:
           uri: https://github.com/hellscorpionxp/config-repo.git
-          basedir: target/config
+          basedir: ${user.home}/.config
           clone-on-start: true
           force-pull: true
         health:
@@ -49,7 +49,7 @@ spring:
       server:
         git:
           uri: https://github.com/hellscorpionxp/config-repo.git
-          basedir: target/config
+          basedir: ${user.home}/.config
           clone-on-start: true
           force-pull: true
         health:

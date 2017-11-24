@@ -9,8 +9,11 @@ eureka:
     status-page-url-path: ${management.context-path}/info
     health-check-url-path: ${management.context-path}/health
   client:
+    region: beijing
     service-url:
-      defaultZone: http://eureka-server1:8761/eureka/,http://eureka-server2:8762/eureka/
+      myZone: http://eureka-server1:8761/eureka/,http://eureka-server2:8762/eureka/
+    availability-zones:
+      beijing: myZone
       
 server:
   address: 0.0.0.0
@@ -40,8 +43,11 @@ eureka:
     status-page-url-path: ${management.context-path}/info
     health-check-url-path: ${management.context-path}/health
   client:
+    region: beijing
     service-url:
-      defaultZone: http://eureka-server1:8761/eureka/,http://eureka-server2:8762/eureka/
+      myZone: http://eureka-server1:8761/eureka/,http://eureka-server2:8762/eureka/
+    availability-zones:
+      beijing: myZone
       
 server:
   address: 0.0.0.0

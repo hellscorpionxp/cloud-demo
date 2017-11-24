@@ -22,8 +22,11 @@ eureka:
       user: admin
       password: admin
   client:
+    region: beijing
     service-url:
-      defaultZone: http://eureka-server1:8761/eureka/,http://eureka-server2:8762/eureka/
+      myZone: http://eureka-server1:8761/eureka/,http://eureka-server2:8762/eureka/
+    availability-zones:
+      beijing: myZone
       
 ---
 spring:
@@ -49,6 +52,9 @@ eureka:
       user: admin
       password: admin
   client:
+    region: beijing
     service-url:
       defaultZone: http://eureka-server1:8761/eureka/,http://eureka-server2:8762/eureka/
+    availability-zones:
+      beijing: myZone
       
